@@ -11,21 +11,24 @@ import librosa as lr
 import pafy 
 import cv2
 import os
-
+import pyloudnorm as pyln
+os.chdir("/home/chaitanya/Documents/Python/Webinar statistics")
 class webinar():
     def __init__(self, audio):
         self.audio=audio
         self.amp, self.sr= lr.load(self.audio,res_type='kaiser_fast')
         self.tempo, self.beat_frames=lr.beat.beat_track(y=self.amp, sr=self.sr, \
-                                               start_bpm=20)
+                                               start_bpm=10)
         
     def innotations(self):
         beat_times = lr.frames_to_time(self.beat_frames, sr=self.sr)
-        return len(beat_times)
+        meter = pyln.Meter(self.sr) #
+        loudness = meter.integrated_loudness(self.amp)
+        return len(beat_times), loudness, self.tempo
     
     def silence(self):
         non_silence=0
-        non_silence_durations=lr.effects.split(self.amp, frame_length=8000)/self.sr
+        non_silence_durations=lr.effects.split(self.amp, top_db=30, frame_length=2048)/self.sr
         for i in range(len(non_silence_durations)):
             non_silence=non_silence+\
                 (non_silence_durations[i][1]-non_silence_durations[i][0])
@@ -110,8 +113,10 @@ def statistics(url):
     video_name=name+'.'+form
     speech=webinar(video_name)
     s, ns= speech.silence()
-    g, f, v=speech.gestures(60)
-    print("Innotations: %d" %(speech.innotations()))
+    g, f, v=speech.gestures(30)
+    print("Innotations: %d" %(speech.innotations()[0]))
+    print("Loudness: %d" %(speech.innotations()[1]))
+    print("Tempo: %d" %(speech.innotations()[2]))
     print("Total Duration: %f" %(speech.duration()) )
     print("Silence duration: %f" %(s))
     print("Non-silence: %f" %(ns))
@@ -119,6 +124,10 @@ def statistics(url):
     print("Number of faces: %f " %(f) )
     print("Visual Duration: %f" %(v*speech.duration()/100))
     print("Visual percentange: %f" %(v))
+    print("Rating: %f", result.rating)
+    print("Likes: %f", result.likes)
+    print("Dislikes: %f", result.dislikes)
+
     os.remove(video_name)
     
 if __name__=='__main__':
