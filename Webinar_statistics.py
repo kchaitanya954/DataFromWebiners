@@ -28,7 +28,7 @@ import os
 import pyloudnorm as pyln
 
 
-#os.chdir("/home/chaitanya/Documents/Python/Webinar statistics")
+os.chdir("/home/chaitanya/Documents/Webinar parameters")
 
 
 class webinar():
@@ -216,6 +216,7 @@ class webinar():
         
         
 # Method to extract nonverbal features using url.      
+# Method to extract nonverbal features using url.      
 def statistics_youtube(url, quality=False, n=10, remove= True):
 
     '''
@@ -271,48 +272,47 @@ def statistics_youtube(url, quality=False, n=10, remove= True):
     g, f, v=speech.gestures(n)
     
     # Prints the number of changes in intonations in a speech.
-    print("Innotations: %d" %(speech.innotations()))
+    print("Innotations: {}" .format(speech.innotations()))
     
     # Prints the loudness of the whole speech.
-    print("Loudness: %d" %(speech.loudness))
+    print("Loudness: {}" .format(speech.loudness))
     
     # Prints the tempo of the speech
-    print("Tempo: %d" %(speech.tempo))
+    print("Tempo: {}" .format(speech.tempo))
     
     # Prints the total duration of the video.
-    print("Total Duration: %f" %(speech.duration()) )
+    print("Total Duration: {}" .format(speech.duration()) )
     
     # Prints the silence duration in the speech.
-    print("Silence duration: %f" %(s))
+    print("Silence duration: {}" .format(s))
     
     # Prints the non-silence duration in the speech.
-    print("Non-silence: %f" %(ns))
+    print("Non-silence: {}" .format(ns))
     
     # Prints the the percentage of gestures in a video.
-    print("Percentage of gestures: %f " %(g) )
+    print("Percentage of gestures: {}" .format(g) )
     
     # Prints the maximum number of human faces captures in a frame.
-    print("Number of faces: %f " %(f) )
+    print("Number of faces: {}" .format(f) )
     
     # Prints the total duration of human face visual presence in a video.
-    print("Visual Duration: %f" %(v*speech.duration()/100))
+    print("Visual Duration: {}" .format(v*speech.duration()/100))
     
     # Prints the percentage of human face visual presnece in a video.
-    print("Visual percentange: %f" %(v))
+    print("Visual percentange: {}" .format(v))
     
     # Prints the rating of the video 
-    print("Rating: %f", video.rating)
+    print("Rating: {}" .format(video.rating))
     
     # Prints the likes of the video
-    print("Likes: %f", video.likes)
+    print("Likes: {}" .format(video.likes))
     
     # Prints the dislikes of the video
-    print("Dislikes: %f", video.dislikes)
+    print("Dislikes: {}" .format(video.dislikes))
     
     # Removes the video from the source after extracting the features.
     if remove:
         os.remove(video_name)
-        
         
 # Method to extract non verbal parameters using videos source path.
 def statistics_system(path, n=10):
@@ -336,35 +336,34 @@ def statistics_system(path, n=10):
     g, f, v=speech.gestures(n)
     
     # Prints the number of changes in intonations in a speech.
-    print("Innotations: %d" %(speech.innotations()))
+    print("Innotations: {}" .format(speech.innotations()))
     
     # Prints the loudness of the whole speech.
-    print("Loudness: %d" %(speech.loudness))
+    print("Loudness: {}" .format(speech.loudness))
     
     # Prints the tempo of the speech
-    print("Tempo: %d" %(speech.tempo))
+    print("Tempo: {}" .format(speech.tempo))
     
     # Prints the total duration of the video.
-    print("Total Duration: %f" %(speech.duration()) )
+    print("Total Duration: {}" .format(speech.duration()) )
     
     # Prints the silence duration in the speech.
-    print("Silence duration: %f" %(s))
+    print("Silence duration: {}" .format(s))
     
     # Prints the non-silence duration in the speech.
-    print("Non-silence: %f" %(ns))
+    print("Non-silence: {}" .format(ns))
     
     # Prints the the percentage of gestures in a video.
-    print("Percentage of gestures: %f " %(g) )
+    print("Percentage of gestures: {} " .format(g) )
     
     # Prints the maximum number of human faces captures in a frame.
-    print("Number of faces: %f " %(f) )
+    print("Number of faces: {} " .format(f) )
     
     # Prints the total duration of human face visual presence in a video.
-    print("Visual Duration: %f" %(v*speech.duration()/100))
+    print("Visual Duration: {}" .format(v*speech.duration()/100))
     
     # Prints the percentage of human face visual presnece in a video.
-    print("Visual percentange: %f" %(v))
-
+    print("Visual percentange: {}" .format(v))
 
 
     
