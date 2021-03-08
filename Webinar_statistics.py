@@ -30,6 +30,9 @@ import pyloudnorm as pyln
 
 os.chdir("/home/chaitanya/Documents/Webinar parameters")
 
+# To ignore warning as audioread is used instead of Pysoundfile with some formats.
+import warnings
+warnings.filterwarnings('ignore')
 
 class webinar():
 
@@ -270,7 +273,7 @@ def statistics_youtube(url, quality=False, n=10, remove= True):
     
     # Percentage of gestures, visual duration and maximun number of faces.
     g, f, v=speech.gestures(n)
-    
+    print()
     # Prints the number of changes in intonations in a speech.
     print("Innotations: {}" .format(speech.innotations()))
     
@@ -334,7 +337,7 @@ def statistics_system(path, n=10):
     
     # Percentage of gestures, visual duration and maximun number of faces.
     g, f, v=speech.gestures(n)
-    
+    print()
     # Prints the number of changes in intonations in a speech.
     print("Innotations: {}" .format(speech.innotations()))
     
